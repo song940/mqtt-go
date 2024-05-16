@@ -8,8 +8,8 @@ import (
 	"os"
 	"time"
 
-	proto "github.com/huin/mqtt"
-	"github.com/jeffallen/mqtt"
+	"github.com/song940/mqtt-go/mqtt"
+	"github.com/song940/mqtt-go/proto"
 )
 
 var conns = flag.Int("conns", 10, "how many conns (0 means infinite)")

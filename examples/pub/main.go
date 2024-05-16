@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"net"
+	"log"
 	"os"
 
-	proto "github.com/huin/mqtt"
-	"github.com/jeffallen/mqtt"
+	"github.com/song940/mqtt-go/mqtt"
+	"github.com/song940/mqtt-go/proto"
 )
 
 var host = flag.String("host", "localhost:1883", "hostname of broker")
@@ -25,12 +25,10 @@ func main() {
 		return
 	}
 
-	conn, err := net.Dial("tcp", *host)
+	cc, err := mqtt.NewClient(*host)
 	if err != nil {
-		fmt.Fprint(os.Stderr, "dial: ", err)
-		return
+		log.Fatal(err)
 	}
-	cc := mqtt.NewClientConn(conn)
 	cc.Dump = *dump
 
 	if err := cc.Connect(*user, *pass); err != nil {
