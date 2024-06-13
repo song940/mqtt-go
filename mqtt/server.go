@@ -266,6 +266,8 @@ func (c *incomingConn) reader() {
 			} else {
 				c.svr.subs.submit(c, m)
 			}
+			// https://github.com/jeffallen/mqtt/pull/16
+			// https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Toc398718041
 			c.submit(&proto.PubAck{MessageId: m.MessageId})
 
 		case *proto.PingReq:
